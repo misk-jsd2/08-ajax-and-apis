@@ -9,10 +9,31 @@
 
 */
 
+// 'use strict';
+// (function() {
+//   var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
+//   var apiKey = "";
+//
+//   });
+// })();
+
 'use strict';
 (function() {
-  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
+  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather";
   var apiKey = "";
+  var userInput = 'Riyadh';
+  var appId = '43daa34bfbf43a4d05f3d2b170269cd1'
 
-  });
+$.ajax({
+  url: weatherUrl,
+  type: 'GET',
+  data:{
+    q: userInput,
+    appid: appId
+  },
+  success: function(response){
+    console.log(response);
+
+  }
+})
 })();
