@@ -12,6 +12,36 @@ success and error scenarios.
 */
 
 'use strict';
-(function() {
+function request() {
   // Alternate data source: https://data.cityofnewyork.us/api/views/jb7j-dtam/rows.json?accessType=DOWNLOAD
-})();
+  // Create instance of XMLHTTPRequest
+  var httpRequest = new XMLHttpRequest();
+
+  // Set a custom function to handle the request
+  httpRequest.onreadystatechange = responseMethod;
+
+  function responseMethod() {
+    // Request logic
+    // Check if our state is "DONE"
+   if (httpRequest.readyState === XMLHttpRequest.DONE) {
+     // If our request was successful we get a return code/status of 200
+     if (httpRequest.status === 200) {
+       // This is where we update our UI accordingly. Our data is available to us through the responseText parameter
+       console.log(httpRequest.response);
+     } else {
+       // This is the scenario that there was an error with our request
+       console.log('There was a problem with the request.');
+     }
+   }
+  }
+
+  httpRequest.open('GET', ' https://anapioficeandfire.com/api/books/1');
+  httpRequest.send();
+
+  // Alternative method:
+  // httpRequest.onreadystatechange = function() {
+  //
+  // }
+};
+
+document.getElementById('getCustomDataButton').addEventListener("click", request);
