@@ -1,39 +1,23 @@
 
 'use strict';
-(function () {
-  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather";
-  var appid = 'e2c700d24d56606840b2457c8bce39b6';
+(function request() {
+  var HttpRequest = new XMLHttpRequest();
 
+   HttpRequest.onreadystatechange = responseM;
+   function responseM(){
 
+	   if (HttpRequest.readyState === XMLHttpRequest.DONE) {
+	     if (HttpRequest.status === 200) {
+	       console.log(HttpRequest.response);
+	     } else {
+	       console.log('request error');
+	     }
 
-  window.onload = function() {
-    var button = document.getElementById('city-button');
-    var userInput = document.getElementById('city');
+	  }
+    document.getElementById('city').addEventListener("click", request);
+	  HttpRequest.open('GET', ' http://api.openweathermap.org/data/2.5/weather');
+	  HttpRequest.send();
 
+	};
 
-    var $button = $('#city-button');
-
-    button.onclick = function(event) {
-      event.preventDefault();
-      var mycity = userInput.value;
-      if (mycity === '') {
-        alert('You must type in a value!');
-      } else {
-
-          $.ajax({
-            url: weatherUrl,
-            type:'GET',
-            data: {
-              q : userInput,
-              appid : appid,
-            },
-            success: function (response) {
-              console.log(response);
-
-            }
-          })
-      }
-    };
-
-}
-})();
+    })();

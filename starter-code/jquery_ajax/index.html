@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <link rel="stylesheet" href="style.css">
+  <title>weather</title>
+  <style>
+  body{
+    text-align: center;
+    margin-top: 10%;
+    font-size: 20px;
+  }
+    input{
+      font-size: 15px;
+      width: 50%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;}
+  </style>
 </head>
 <body>
-  <input id ="city">
-  <input id="city-button" type="submit" value="add city"></submit>
-  </form>  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<form action="index.html" method="post">
+  <label for="Cityname">Enter City Name <br /> </label>
+  <input style="background-color: #efefef"type="text" name="city" value="" id="city" placeholder="city name">
+  <input style="background-color: #66254c; color:white;"type="submit" name="" value="Submit" id="submit">
+
+</form>
+
+
+  </form>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="main.js" type="text/javascript" charset="utf-8" async defer></script>
 
 </body>
