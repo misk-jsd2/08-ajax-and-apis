@@ -10,9 +10,55 @@
 */
 
 'use strict';
-(function() {
-  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
-  var apiKey = "";
 
-  });
-})();
+  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather";
+  
+  var userInput = 'London'
+
+  var appid = '6109409e839651115739cc159c3d027a'
+
+  $('#citybutton').click(function(event){
+    event.preventDefault();
+
+    var userInput = $('#city').val()
+    console.log(userInput)
+
+  
+
+
+    
+  $.ajax ({
+    url : weatherUrl ,
+    type : 'GET',
+    data :  {
+      q: userInput,
+      appid: appid
+
+    },
+
+    success: function(response) {
+      console.log(response)
+   
+      $('#display').append('h1').text(JSON.stringify(response.main))
+
+
+    }
+
+
+  })
+
+
+
+
+
+
+
+
+
+
+  })
+
+
+
+
+
