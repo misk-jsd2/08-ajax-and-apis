@@ -12,29 +12,43 @@
 
 'use strict';
 (function() {
+
   var weatherUrl = "http://api.openweathermap.org/data/2.5/weather";
+  var appid = 'ef0e2336d0426d942f50eb10b4c3fb18';
+  var $userinput = $('#User-Input');
+  var $button = $('#User-Input-Button');
+  
 
-var appid = 'ef0e2336d0426d942f50eb10b4c3fb18';
 
-$.ajax({
-  url: weatherUrl,
-  type: 'GET',
-  data: {
-    q : userinput,
-    appid: appid,
-  },
-  success: function(response){
-    console.log(response)
-  }
-
-})
-var $userinput = $('#Userinput');
-var $button = $('#Userinputbutton');
   $button.on('click', function(event) {
     event.preventDefault();
-    var userInput = $Userinput.val();
+    var UserInput = $userinput.val();
 
-})})();
+  $.ajax({
+    url: weatherUrl,
+    type: 'GET',
+    data: {
+      q : UserInput,
+      appid: appid,
+    },
+    success: function(response){
+      console.log(response)
+
+      var $CityName = $('#CityName');
+      $CityName.text(response.name);
+      
+      var $Temp = $('#Temp')
+      var $cTemp= (response.main.temp) - (273.15) ;
+      $Temp.text('Temp : ' + $cTemp +'C');
+
+      var $Cloud = $('#Clouds');
+      $Cloud.text('Could : '+response.clouds.all);
+    }
+  
+  })
+
+  })
+})();
 
 //    var userinput = 'r2'
 
