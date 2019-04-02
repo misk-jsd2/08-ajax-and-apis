@@ -12,7 +12,7 @@
 'use strict';
 (function() {
   var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
-  var apiKey = "";
+  var apiKey = "ad9a90ea3d1b1ce65aa547a79ef63558";
 
   });
 })();
