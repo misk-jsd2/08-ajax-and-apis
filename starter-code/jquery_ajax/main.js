@@ -9,10 +9,37 @@
 
 */
 
-'use strict';
+"use strict";
 (function() {
-  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
-  var apiKey = "";
+  var keys = ["name", "wind", "main"];
+  var btn = $("#btn");
+  var input = $("#input");
+  var weatherInfoDiv = $("<div></div>").css({ margin: "20px" });
+  $("body").append(weatherInfoDiv);
 
+  var appId = "59cb9f55209c4877359724cd25cfb175";
+  var userInput = "riyadh";
+  var weatherURL = "http://api.openweathermap.org/data/2.5/weather/";
+  $.ajax({
+    url: weatherURL,
+    type: "GET",
+    data: {
+      q: userInput,
+      appid: appId
+    },
+    success: res => {
+      var cityDiv = $("<div></div>").append(`<h1>${res.name}</h1>`);
+      var infoUl = $("<ul></ul>");
+      keys.forEach(element => {
+        let li = $("<li></li>")
+        //work is not done
+          .append(`<div> <strong>${element}:</strong>${res[element]}</div>`)
+          .css({ padding: "10px" });
+        $(infoUl).append(li);
+      });
+
+      $(weatherInfoDiv).append(cityDiv);
+      $(cityDiv).append(infoUl);
+    }
   });
 })();
