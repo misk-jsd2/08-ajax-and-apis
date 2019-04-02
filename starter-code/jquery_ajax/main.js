@@ -10,9 +10,35 @@
 */
 
 'use strict';
-(function() {
-  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
-  var apiKey = "";
 
+$(document).ready(function(){
+    $('#city-button').on('click', function(event){
+        event.preventDefault();
+        var getInfo = $('#city').val();
+        getWeatherInfo(getInfo);
+
+    });
+});
+
+function getWeatherInfo(weatherCity) {
+  var weatherUrl = "https://api.openweathermap.org/data/2.5/weather/";
+  var appid = "e3ea0a6cf870bb12e8e9ab73bdebcf33";
+  $.ajax({
+    url: weatherUrl,
+    type: 'GET',
+    data: {
+      q: weatherCity,
+      appid: appid
+    },
+    success: function(reaponse){
+         setName(reaponse);
+    } 
   });
-})();
+};
+
+function setName(weatherInfo){
+    $('#info1').text(weatherInfo.main.temp);
+    $('#info2').text(weatherInfo.main.pressure);
+    $('#info3').text(weatherInfo.wind.speed);
+    console.log(weatherInfo);
+};
