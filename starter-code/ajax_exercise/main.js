@@ -12,6 +12,62 @@ success and error scenarios.
 */
 
 'use strict';
-(function() {
+(function () {
   // Alternate data source: https://data.cityofnewyork.us/api/views/jb7j-dtam/rows.json?accessType=DOWNLOAD
+
+  // Create instance of XMLHTTPRequest
+  var httpRequest = new XMLHttpRequest();
+
+  // Set a custom function to handle the request
+  httpRequest.onreadystatechange = responseMethod;
+
+  function responseMethod() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      // If our request was successful we get a return code/status of 200
+      if (httpRequest.status === 200) {
+        // This is where we update our UI accordingly. Our data is available to us through the responseText parameter
+      //  console.log(httpRequest.responseText);
+      } else {
+        // This is the scenario that there was an error with our request
+        console.log('There was a problem with the request.');
+      }
+    }
+  }
+
+  httpRequest.open('GET', 'http://data.consumerfinance.gov/api/views.json');
+  httpRequest.send()
+
+  // Alternative method:
+  // httpRequest.onreadystatechange = function() {
+  //   
+  // }
+
 })();
+
+var button = document.getElementById('getDataButton');
+
+button.onclick = function (event) {
+
+  var httpRequest = new XMLHttpRequest();
+
+
+  httpRequest.onreadystatechange = responseMethod;
+
+  function responseMethod() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+
+      if (httpRequest.status === 200) {
+
+        console.log(httpRequest.responseText);
+      } else {
+
+        console.log('There was a problem with the request.');
+      }
+    }
+  }
+
+  httpRequest.open('GET', ' https://data.cityofnewyork.us/api/views/jb7j-dtam/rows.json?accessType=DOWNLOAD');
+  httpRequest.send()
+
+
+}
