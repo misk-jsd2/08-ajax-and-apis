@@ -55,29 +55,51 @@ console.log("it work");
 // (function() {
 //   var button = $('#city-button');
   
-  $button.on('click', function(event)
+  $('#city-button').on('click', function(event)
   {
   	event.preventDefault();
   	var userInput = $('#city').val();
-  	getCityWeather(userInput);
-  }
-  (function getCityWeather(UI)
-  {
-  	var weatherUrl = "http://api.openweathermap.org/data/2.5/weather";  	
-  	var appid = 'b2fc3ff73ef87cee9c99ad9945fd7f80';//how we can take it as an input
-  	if(UI="")
-  	{
-  		console.log("you did not input a city.")
-  	}
-  	else
-  	{
-  		$.ajax({
-  			url: weatherUrl,
-  			type: 'GET',
-  			data: {
-  				q: UI,
-  				appid: appid,
-  			},
+    $('#cityName').append(userInput);
+    var weatherUrl = "http://api.openweathermap.org/data/2.5/weather";    
+    var appid = 'b2fc3ff73ef87cee9c99ad9945fd7f80';//how we can take it as an input
+    if(userInput=="")
+    {
+      console.log("you did not input a city.")
+    }
+    else
+    {
+      $.ajax({
+        url: weatherUrl,
+        type: 'GET',
+        data: {
+          q: userInput,
+          appid: appid,
+        },
+        success: function (response) {
+      console.log(response);
+
+    }
+  
   });
   }
-});
+  });
+//   (function getCityWeather(UI)
+//   {
+//   	var weatherUrl = "http://api.openweathermap.org/data/2.5/weather";  	
+//   	var appid = 'b2fc3ff73ef87cee9c99ad9945fd7f80';//how we can take it as an input
+//   	if(UI="")
+//   	{
+//   		console.log("you did not input a city.")
+//   	}
+//   	else
+//   	{
+//   		$.ajax({
+//   			url: weatherUrl,
+//   			type: 'GET',
+//   			data: {
+//   				q: UI,
+//   				appid: appid,
+//   			},
+//   });
+//   }
+// });
