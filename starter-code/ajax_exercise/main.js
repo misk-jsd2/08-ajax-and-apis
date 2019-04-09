@@ -1,41 +1,40 @@
-/*
 
-- Refactor the codealong to work with user interaction. In the index.html file
-there is a "Get Consumer Finance Data" button. When the user clicks the button,
-pull data from the provided link above (http://data.consumerfinance.gov/api/views.json).
-Handle the link success and error responses accordingly, displaying results in
-console.log() if successful.
+var button = document.getElementById('weatherButton');
+button.onclick = (function(event) {
+	event.preventDefault();
+    var userInput = document.getElementById('weatherText').value;
 
-- Separate your logic so that you can use your functions for another user button
-click of "Get Custom Data". Interact with an API of your choice and handle both
-success and error scenarios.
-*/
 
-'use strict';
-(function() {
-  // Alternate data source: https://data.cityofnewyork.us/api/views/jb7j-dtam/rows.json?accessType=DOWNLOAD
+	'use strict';
+	(function() {
+  		var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather';
+  		var apiKey = '4144587869c5311f463fce316e263bc0';
+      var unit = 'metric';
+      var lang = 'ar';
 
-  var getDataButton = document.getElementById('getDataButton').onclick = getData;
-
-  var httpRequest = new XMLHttpRequest();  
-  httpRequest.onreadystatechange = responseMethod;
-  
-  function getData() {
-    httpRequest.open('GET', 'http://data.consumerfinance.gov/api/views.json');
-    httpRequest.send()
-  }
-
-  function responseMethod() {
-    // console.log(httpRequest)
-    if (httpRequest.readyState === XMLHttpRequest.DONE) {
-      // If our request was successful we get a return code/status of 200
-      if (httpRequest.status === 200) {
-        // This is where we update our UI accordingly. Our data is available to us through the responseText parameter
-        console.log(httpRequest);
-      } else {
-        // This is the scenario that there was an error with our request
-        console.log('There was a problem with the request.');
-      }
-    }
-  }
-})();
+  });
+  		$.ajax({
+  			url: weatherUrl,
+  			type: 'GET',
+  			data: {
+	  			q: userInput,
+  				appid: apiKey,
+          units: unit,
+          lang: lang,
+  			},
+  			success: function( response ) {
+	    		console.log( response ); // server response
+  			}
+  		})
+  		.done(function(response) {
+  			var temp = response.main.temp;
+  			var desc = response.wind.speed;
+  			var humidity = response.main.humidity
+  			var x = $('<p>').text("Temperature: " + temp + "°C, ")
+  			var y = $('<p>').text("Wind Speed: " + wind + ", ")
+  			var z = $('<p>').text("Humidity: " + humidity)
+  			$('#Data').append(x);
+  			$('#Data').append(y);
+  			$('#Data').append(z);
+    });
+  });
