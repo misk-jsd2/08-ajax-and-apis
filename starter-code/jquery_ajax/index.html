@@ -1,13 +1,23 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8"/>
+    <title>TODAY's WEATHER</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="main.js" type="text/javascript" charset="utf-8" async defer></script>
 </head>
 <body>
+    <h2>The temperature in <span id="location"></span> is <span id="temp"></span>.</h2>
+    <input type="text" name="city" value="" id="weatherText">
+	<form>
+    	<input id="weatherButton" type="submit" value="Show me the weather"></submit>
+  	</form>
+ 	<div id="data"/>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="main.js" type="text/javascript" charset="utf-8" async defer></script>
 
 </body>
 </html>
+

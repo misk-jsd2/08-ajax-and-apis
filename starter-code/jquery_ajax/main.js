@@ -11,8 +11,28 @@
 
 'use strict';
 (function() {
-  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
-  var apiKey = "";
+  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather";
+  var appid = "4144587869c5311f463fce316e263bc0";
+  var userInput= '$user';
+  var untis= 'metric';
+  var lang='ar';
+  var city = document.getElementById(userInput).value;
 
-  });
-})();
+$.ajax({
+
+url: weatherUrl,
+type: 'GET',
+data: {
+  appid: appid,
+  q: userInput,
+  untis: untis,
+  lang: lang,
+},
+success: function(response) {
+  console.log( response );
+
+}
+});
+});
+
+
