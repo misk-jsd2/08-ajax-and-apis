@@ -1,18 +1,28 @@
 $(document).ready(function(){
- $('#btn').click(function(){
-
+ $('#btn').click(function(event){
+    event.preventDefault();
 var city = $("#city").val();
+console.log('city is:'+city);
+
+
+
+
 
 if (city != ''){
 $.ajax({
-    url: 'http://api.openweathermap.org/data/2.5/weather?q=' + "&units=metric" +
+    url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + "&units=metric" +
     "&APPID=f10455a4d92b4736cdd7404b7dc60cd9",
     type: "GET",
     dataType: "jsonp",
 
-    success: function(date){
-    	// console.log(data);
-        $("#result").html(date); 
+    success: function(respons){
+    	// console.log(respons.main.temp);
+        document.getElementById("weatherinformation").innerHTML = '';
+         var color = document.createTextNode(respons.main.temp);
+    
+    document.getElementById('weatherinformation').appendChild(color);
+        // $("#result").html(respons); 
+
  }
     });
 }else{
